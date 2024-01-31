@@ -1,5 +1,6 @@
 const updateBtn  = document.getElementById("changepw");
 const ImgProfile = document.getElementById("profileImage");
+const originalImage = document.getElementById("profileIcon").src;
 
 let changeStatus = false;
 let changeImg    = false;
@@ -41,10 +42,11 @@ ImgProfile.addEventListener("change", () =>
 
 const cancelImgBtn = () =>
 {
-    console.log("Asd");
+    document.getElementById("profileIcon").src = originalImage;
     URL.revokeObjectURL(blobImg);
     document.getElementById("cancel-img").innerHTML = ``;
     document.getElementById("profileImage").value = "";
+
 };
 
 
