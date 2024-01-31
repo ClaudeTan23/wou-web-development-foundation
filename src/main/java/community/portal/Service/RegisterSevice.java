@@ -30,9 +30,16 @@ public class RegisterSevice
     public String User(UsersEntity user, RedirectAttributes redirect)
     {
         UsersEntity existedUser = userRepo.findByUsername(user.getUsername());
+        UsersEntity existedEmail = userRepo.findActiveEmail(user.getEmail(), "active");
 
         if(existedUser == null)
         {
+            if(existedEmail != null)
+            {
+                redirect.addFlashAttribute("result", "This Email have been used.");
+                return "redirect:/register";
+            }
+
             String encryptPassword  = passwordEncoder.encode(user.getPassword());
             UUID uid = UUID.randomUUID();
 
@@ -62,6 +69,12 @@ public class RegisterSevice
 
         } else if(existedUser != null && existedUser.getStatus().equals("pending"))
         {
+            if(existedEmail != null)
+            {
+                redirect.addFlashAttribute("result", "This Email have been used.");
+                return "redirect:/register";
+            }
+
             String encryptPassword = passwordEncoder.encode(user.getPassword());
             UUID uid = UUID.randomUUID();
 
@@ -70,7 +83,6 @@ public class RegisterSevice
             existedUser.setFirstname(user.getFirstname());
             existedUser.setLastname(user.getLastname());
             existedUser.setEmail(user.getEmail());
-            existedUser.setStatus("pending");
             existedUser.setImage("profile.png");
 
             RoleEntity role = roleRepo.findByRoles("user");
