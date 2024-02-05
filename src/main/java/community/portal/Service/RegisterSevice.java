@@ -1,6 +1,6 @@
 package community.portal.Service;
 
-import java.util.UUID;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,9 +30,16 @@ public class RegisterSevice
     public String User(UsersEntity user, RedirectAttributes redirect)
     {
         UsersEntity existedUser = userRepo.findByUsername(user.getUsername());
+        UsersEntity existedEmail = userRepo.findActiveEmail(user.getEmail(), "active");
 
         if(existedUser == null)
         {
+            if(existedEmail != null)
+            {
+                redirect.addFlashAttribute("result", "This Email have been used.");
+                return "redirect:/register";
+            }
+
             String encryptPassword  = passwordEncoder.encode(user.getPassword());
             UUID uid = UUID.randomUUID();
 
@@ -40,10 +47,6 @@ public class RegisterSevice
             user.setVerify_code(uid.toString());
             user.setStatus("pending");
             user.setImage("profile.png");
-
-            RoleEntity role = roleRepo.findByRoles("user");
-
-            user.setRoles(role);
             
             userRepo.save(user);
 
@@ -62,20 +65,38 @@ public class RegisterSevice
 
         } else if(existedUser != null && existedUser.getStatus().equals("pending"))
         {
+            if(existedEmail != null)
+            {
+                redirect.addFlashAttribute("result", "This Email have been used.");
+                return "redirect:/register";
+            }
+
             String encryptPassword = passwordEncoder.encode(user.getPassword());
             UUID uid = UUID.randomUUID();
+            Set<RoleEntity> rolePosition = new HashSet<RoleEntity>();
 
             existedUser.setPassword(encryptPassword);
             existedUser.setVerify_code(uid.toString());
             existedUser.setFirstname(user.getFirstname());
             existedUser.setLastname(user.getLastname());
             existedUser.setEmail(user.getEmail());
-            existedUser.setStatus("pending");
             existedUser.setImage("profile.png");
 
-            RoleEntity role = roleRepo.findByRoles("user");
+            RoleEntity roleUser = roleRepo.findByRoles("user");
+            RoleEntity roleAdmin = roleRepo.findByRoles("admin");
 
-            existedUser.setRoles(role);
+            if(user.getRoles().contains(roleAdmin))
+            {
+                rolePosition.add(roleAdmin);
+                existedUser.roles = rolePosition;
+
+
+            } else 
+            {
+                rolePosition.add(roleUser);
+                existedUser.roles = rolePosition;
+        
+            }
 
             userRepo.save(existedUser);
 

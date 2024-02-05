@@ -290,23 +290,6 @@
     </head>
 
     <body>
-        <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- header section start -->
         <div class="header_section">
             <div class="container-fluid">
@@ -400,76 +383,67 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="d-flex justify-content-center row">
-                <div class="d-flex flex-column col-md-8 mt-5 border border-light-subtle rounded">
-                    <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
-                        <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg" width="70">
-                        </div>
-                        <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"></div>
-                        <div class="d-flex flex-column ml-3">
-                            <div class="d-flex flex-row post-title">
-                                <h5>Is sketch 3.9.1 stable?</h5><span class="ml-2">(Jesshead)</span>
-                            </div>
-                            <div class="d-flex flex-row align-items-center align-content-center post-title"><span>6 hours ago</span></div>
-                        </div>
-                    </div>
-                    <div class="coment-bottom bg-white p-2 px-4">
-                        <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img
-                                class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg"
-                                width="38"><input type="text" class="form-control mr-3" placeholder="Add comment"><button
-                                class="btn btn-primary" type="button">Comment</button></div>
-                                <hr>
-                        <div class="commented-section mt-2">
-                            <div class="d-flex flex-row align-items-center commented-user">
-                                <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38">
-                                <h5 class="mr-2">Corey oates</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">4 hours
-                                    ago</span>
-                            </div>
-                            <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                            <hr>
-                        </div>
-
-                        <div class="commented-section mt-2">
-                            <div class="d-flex flex-row align-items-center commented-user">
-                                <h5 class="mr-2">Samoya Johns</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">5 hours
-                                    ago</span>
-                            </div>
-                            <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua..</span></div>
-                            <div class="reply-section">
-                                <div class="d-flex flex-row align-items-center voting-icons"><i
-                                        class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i
-                                        class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">15</span><span
-                                        class="dot ml-2"></span>
-                                    <h6 class="ml-2 mt-1">Reply</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="commented-section mt-2">
-                            <div class="d-flex flex-row align-items-center commented-user">
-                                <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">10
-                                    hours ago</span>
-                            </div>
-                            <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non odio
-                                    euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed arcu non odio
-                                    euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed id. Adipiscing elit
-                                    pellentesque habitant morbi tristique senectus et netus. Ultrices mi tempus imperdiet nulla
-                                    malesuada pellentesque.</span></div>
-                            <div class="reply-section">
-                                <div class="d-flex flex-row align-items-center voting-icons"><i
-                                        class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i
-                                        class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">25</span><span
-                                        class="dot ml-2"></span>
-                                    <h6 class="ml-2 mt-1">Reply</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div style="display: flex; width: 89%; justify-content: right;">
+                    <button type="button" class="btn btn-base" data-bs-toggle="modal" data-bs-target="#modal"
+                        data-bs-whatever="@mdo">Post</button>
                 </div>
-            </div> -->
+                
+                <form class="modal fade" id="modal" tabindex="-1" aria-hidden="true" action="/post" method="POST">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Post</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Says something...</label>
+                                        <textarea class="form-control" name="content" id="message-text" required style="color: #202020;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-base" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-secondary">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    
+            <c:forEach var="i" begin="1" end="${post.size()}">
+                            <div class="d-flex justify-content-center row">
+                                <div class="d-flex flex-column col-md-8 mt-5 border border-light-subtle rounded">
+                                    <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                                        <div class="profile-image"><img class="rounded-circle" src="/images/${post[i - 1].getPostuser().get(0).getImage()}" style="width: 70px; height: 70px;">
+                                        </div>
+                                        <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"></div>
+                                        <div class="d-flex flex-column ml-3">
+                                            <div class="d-flex flex-row post-title">
+                                                <h5>${post[i - 1].getContent()}</h5><span class="ml-2">(${post[i - 1].getPostuser().get(0).getLastname()} ${post[i - 1].getPostuser().get(0).getFirstname()})</span>
+                                            </div>
+             
+                                            <div class="d-flex flex-row align-items-center align-content-center post-title"><span>${post[i - 1].getTime()}</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="coment-bottom bg-white p-2 px-4">
+                                        <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img
+                                                class="img-fluid img-responsive rounded-circle mr-2" src="/images/${user.getImage()}"
+                                                width="38"><input type="text" style="color: #202020;" class="form-control mr-3" placeholder="Add comment" data-post-id="${post[i - 1].getPost_id()}"><button
+                                                class="btn btn-primary" type="button" onclick="postComment('${post[i - 1].getPost_id()}', event)">Comment</button></div>
+                                                <hr>
+                                        <div id="comment-container-${post[i - 1].getPost_id()}">
+                                            
+                                        </div>
+                                        <div style="display: flex; justify-content: center;">
+                                            <button class="btn btn-base" onclick="loadComments('${post[i - 1].getPost_id()}')">Load comments</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+            </c:forEach>
         </div>
        
             <!--  footer section end -->
@@ -487,7 +461,7 @@
                 </div>
                 <!-- copyright section end -->
                 <!-- Javascript files-->
-
+                <script src="/js/comment.js"></script>
     </body>
 
     </html>

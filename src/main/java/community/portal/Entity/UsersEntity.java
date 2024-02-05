@@ -1,6 +1,8 @@
 package community.portal.Entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -9,8 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import community.portal.Repository.Comments;
+
 
 @Entity
 @Table(name = "users")
@@ -53,8 +60,14 @@ public class UsersEntity
     @Column(length = 255, nullable = true)
     String email;
 
+    @ManyToMany(mappedBy = "users")
+    Set<PostEntity> posts = new HashSet<PostEntity>();
+
+    @ManyToMany(mappedBy = "users")
+    Set<CommentEntity> comments = new HashSet<CommentEntity>();
+
     @ManyToMany(fetch = FetchType.EAGER)
-    Set<RoleEntity> roles = new HashSet<RoleEntity>();
+    public Set<RoleEntity> roles = new HashSet<RoleEntity>();
 
     public Long getId() 
     {

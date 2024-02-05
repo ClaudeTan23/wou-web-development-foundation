@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import community.portal.Entity.UsersEntity;
+import community.portal.Exception.CustomException;
 import community.portal.Repository.Users;
 import community.portal.Service.ForgetPasswordEmail;
 
 
 @Controller
-public class ForgetPasswordController 
+public class ForgetPasswordController
 {
     @Autowired
     private Users users;
