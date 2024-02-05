@@ -112,6 +112,9 @@
                <li><a href="#"><img src="images/instagram-icon.png"></a></li>
                <li><a href="#"><img src="images/linkedin-icon.png"></a></li>
             </ul>
+            <div style="display: flex; justify-content: center; padding: 20px 0; color: #202020;">
+                <a href="/sitemap">Sitemap</a>
+            </div>
          </div>
 
       </div>
